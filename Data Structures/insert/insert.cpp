@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include "../mytemplate.h"
 
 using namespace std;
 
