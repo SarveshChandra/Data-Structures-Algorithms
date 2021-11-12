@@ -2,8 +2,6 @@
 
 using namespace std;
 
-
-
 #include"mytemplate.h"
 
 vector<int> ds = {5,6,2,3,7,1};
@@ -12,14 +10,14 @@ vector<int> ds = {5,6,2,3,7,1};
 void ulbounds() {
     cout<<endl;
     // upper lower bounds after sort
-    sort(ds.begin(), ds.end());
-    auto ub = upper_bound(ds.begin(), ds.end(), 6);
+    sort(ds.begin(), ds.end()); //returns nothing
+    auto ub = upper_bound(ds.begin(), ds.end(), 3);
     cout<<"ub output"<<endl;
     for(auto it = ub;it!=ds.end();it++) {
         cout<<*it<<" ";
     }
     cout<<endl<<"lb output"<<endl;
-    auto lb = lower_bound(ds.begin(), ds.end(), 6);
+    auto lb = lower_bound(ds.begin(), ds.end(), 2);
     for(auto it = lb;it!=ds.end();it++) {
         cout<<*it<<" ";
     }
