@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#include"mytemplate.h"
+#include "mytemplate.h"
 
 vector<int> ds = {5,6,2,3,7,1};
 // array<int, 6> ds = {5,6,2,3,7,1};
@@ -11,6 +11,10 @@ void ulbounds() {
     cout<<endl;
     // upper lower bounds after sort
     sort(ds.begin(), ds.end()); //returns nothing
+    for(auto ele:ds) {
+        cout<<ele<<" ";
+    }
+    cout<<endl;
     auto ub = upper_bound(ds.begin(), ds.end(), 3);
     cout<<"ub output"<<endl;
     for(auto it = ub;it!=ds.end();it++) {

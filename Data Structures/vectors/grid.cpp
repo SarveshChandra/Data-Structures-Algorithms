@@ -9,20 +9,22 @@ int main() {
     vector<vector<int>> grid = {{1,2,3,4, 5,6}, {7,8,9,10,11,12},{13,14,15,16,17,18},{19,20,21,22,23,24}};
 
     // grid[0].push_back(1);
-    // for(auto x:grid) {
-    //     for(auto y:x) {
-    //         cout<<y<<" ";
-    //     }
-    //     cout<<endl;
-    // }
-    // cout<<endl;
+    printer("input grid");
+    for(auto x:grid) {
+        for(auto y:x) {
+            cout<<y<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
     // deb(v.size());
     // deb(v[0].size());
 
     int rows = grid.size();
     int columns = grid[0].size();
-    cout<<rows<<" "<<columns<<endl;
+    cout<<"rows: "<<rows<<", colummns: "<<columns<<endl<<endl;
     int layers = (rows < columns)? rows/2 : columns/2;
+    cout<<"layers: "<<layers<<endl<<endl;
     vector<int> v;
 
     // for(auto x:v) {
