@@ -2,7 +2,7 @@
 
 using namespace std;
 
-#include "mytemplate.h"
+#include "../../myheader.h"
 
 vector<int> ds = {5,6,2,3,7,1};
 // array<int, 6> ds = {5,6,2,3,7,1};

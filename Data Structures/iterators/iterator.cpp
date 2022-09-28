@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "../mytemplate.h"
+#include "../../myheader.h"
 
 using namespace std;
 
