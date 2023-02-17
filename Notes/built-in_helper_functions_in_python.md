@@ -100,7 +100,7 @@
     The all() function takes an iterable as input and returns True if all of the elements in the iterable evaluate to True, and False otherwise.
 
 ### enumerate():
-    The enumerate() function takes an iterable as input and returns an iterator that generates pairs of indices and elements from the iterable.
+    The enumerate() function takes an iterable as input and returns an iterator that generates pairs of indices and elements in tuple data type from the iterable.
 
 ### sum():
     The sum() function takes an iterable of numbers as input and returns the sum of the numbers.

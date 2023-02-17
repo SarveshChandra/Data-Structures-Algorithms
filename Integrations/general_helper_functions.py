@@ -1,4 +1,5 @@
 '''gcd(a, b): This function computes the greatest common divisor of two integers a and b, using the Euclidean algorithm.'''
+
 def gcd(a, b):
     if b == 0:
         return a
@@ -6,11 +7,13 @@ def gcd(a, b):
 
 
 '''lcm(a, b): This function computes the least common multiple of two integers a and b, using the formula lcm(a, b) = (a * b) / gcd(a, b).'''
+
 def lcm(a, b):
     return (a * b) // gcd(a, b)
 
 
 '''is_prime(n): This function checks if an integer n is prime, using trial division up to the square root of n.'''
+
 def is_prime(n):
     if n <= 1:
         return False
@@ -21,6 +24,7 @@ def is_prime(n):
 
 
 '''factorize(n): This function computes the prime factorization of an integer n, returning a list of prime factors and their multiplicities.'''
+
 def factorize(n):
     factors = []
     i = 2
@@ -36,6 +40,7 @@ def factorize(n):
 
 
 '''binomial(n, k): This function computes the binomial coefficient n choose k, using dynamic programming.'''
+
 def binomial(n, k):
     if k > n:
         return 0
@@ -53,9 +58,11 @@ def binomial(n, k):
 
 '''reverse_linked_list(head): This function reverses a singly linked list, given its head node.'''
 class ListNode:
+    
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 
 def reverse_linked_list(head):
     prev, curr = None, head
@@ -68,12 +75,14 @@ def reverse_linked_list(head):
 
 
 '''is_palindrome(s): This function checks if a string s is a palindrome, ignoring whitespace and case.'''
+
 def is_palindrome(s):
     s = s.lower().replace(' ', '')
     return s == s[::-1]
 
 
 '''two_sum(nums, target): This function finds the indices of two numbers in a list nums that add up to a target value, using a dictionary to store the complement of each element.'''
+
 def two_sum(nums, target):
     complement_map = {}
     for i, num in enumerate(nums):
@@ -85,6 +94,7 @@ def two_sum(nums, target):
 
 
 '''prime_sieve(n): This function generates a list of all prime numbers up to a given integer n, using the Sieve of Eratosthenes algorithm.'''
+
 def prime_sieve(n):
     primes = [True] * (n + 1)
     primes[0], primes[1] = False, False
@@ -96,7 +106,9 @@ def prime_sieve(n):
 
 
 '''permutations(nums): This function generates all possible permutations of a list of integers nums, using backtracking.'''
+
 def permutations(nums):
+    
     def backtrack(start):
         if start == len(nums):
             result.append(nums[:])
@@ -110,6 +122,7 @@ def permutations(nums):
 
 
 '''matrix_rotation(matrix): This function rotates a 2D square matrix matrix 90 degrees clockwise, in-place.'''
+
 def matrix_rotation(matrix):
     n = len(matrix)
     for i in range(n // 2):
@@ -123,6 +136,7 @@ def matrix_rotation(matrix):
 
 
 '''merge_sort(arr): This function sorts a list of integers arr using the merge sort algorithm.'''
+
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -130,6 +144,7 @@ def merge_sort(arr):
     left = merge_sort(arr[:mid])
     right = merge_sort(arr[mid:])
     return merge(left, right)
+
 
 def merge(left, right):
     result = []
@@ -147,6 +162,7 @@ def merge(left, right):
 
 
 '''binary_search(arr, target): This function searches for an integer target in a sorted list of integers arr using binary search.'''
+
 def binary_search(arr, target):
     left, right = 0, len(arr) - 1
     while left <= right:
@@ -161,6 +177,7 @@ def binary_search(arr, target):
 
 
 '''count_chars(s): This function counts the number of occurrences of each character in a string s, and returns a dictionary with the counts.'''
+
 def count_chars(s):
     counts = {}
     for c in s:
@@ -172,6 +189,7 @@ def count_chars(s):
 
 
 '''generate_primes(n): This function generates all prime numbers up to a given integer n using the Sieve of Eratosthenes algorithm.'''
+
 def generate_primes(n):
     sieve = [True] * (n+1)
     sieve[0] = sieve[1] = False
@@ -185,6 +203,7 @@ def generate_primes(n):
 
 
 '''factorial(n): This function calculates the factorial of a non-negative integer n.'''
+
 def factorial(n):
     if n == 0:
         return 1
@@ -193,6 +212,7 @@ def factorial(n):
 
 
 '''fibonacci(n): This function calculates the n-th term of the Fibonacci sequence using dynamic programming.'''
+
 def fibonacci(n):
     if n == 0:
         return 0
@@ -209,6 +229,7 @@ def fibonacci(n):
 '''merge_sorted_lists(lists): This function merges multiple sorted lists lists into a single sorted list using a heap. Returns the merged list.'''
 
 import heapq
+
 
 def merge_sorted_lists(lists):
     heap = []
@@ -227,11 +248,13 @@ def merge_sorted_lists(lists):
 
 
 '''sort_dict_by_value(d): This function sorts a dictionary d by its values in ascending order. Returns the sorted dictionary as a list of tuples.'''
+
 def sort_dict_by_value(d):
     return sorted(d.items(), key=lambda x: x[1])
 
 
 '''find_missing_number(arr): This function finds the missing number in a sequence of integers from 1 to n, where one of the numbers is missing. Returns the missing number.'''
+
 def find_missing_number(arr):
     n = len(arr) + 1
     total = n * (n + 1) // 2
@@ -239,11 +262,13 @@ def find_missing_number(arr):
 
 
 '''count_occurrences(arr, x): This function counts the number of occurrences of an element x in a list arr. Returns the count.'''
+
 def count_occurrences(arr, x):
     return arr.count(x)
 
 
 '''merge_sort(arr): This function performs a merge sort on a list arr, and returns a sorted copy of the original list.'''
+
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -251,6 +276,7 @@ def merge_sort(arr):
     left = merge_sort(arr[:mid])
     right = merge_sort(arr[mid:])
     return merge(left, right)
+
 
 def merge(left, right):
     merged = []
@@ -268,6 +294,7 @@ def merge(left, right):
 
 
 '''count_sort(arr): This function performs a counting sort on a list arr of non-negative integers, and returns a sorted copy of the original list.'''
+
 def count_sort(arr):
     if not arr:
         return []
@@ -285,16 +312,19 @@ def count_sort(arr):
 
 
 '''is_anagram(s1, s2): This function tests whether two strings s1 and s2 are anagrams of each other, i.e., contain the same characters in a different order.'''
+
 def is_anagram(s1, s2):
     return sorted(s1) == sorted(s2)
 
 
 '''sum_digits(n): This function returns the sum of the digits of a non-negative integer n.'''
+
 def sum_digits(n):
     return sum(int(d) for d in str(n))
 
 
 '''next_permutation(arr): This function generates the lexicographically next permutation of a list arr, or returns None if no such permutation exists.'''
+
 def next_permutation(arr):
     i = len(arr) - 2
     while i >= 0 and arr[i] >= arr[i+1]:
@@ -310,6 +340,7 @@ def next_permutation(arr):
 
 
 '''subset_sum(nums, target): This function finds whether there exists a subset of a list nums that sums up to a given target.'''
+
 def subset_sum(nums, target):
     n = len(nums)
     dp = [[False] * (target + 1) for _ in range(n + 1)]
@@ -325,6 +356,7 @@ def subset_sum(nums, target):
 
 
 '''merge_intervals(intervals): This function merges overlapping intervals in a list of intervals intervals.'''
+
 def merge_intervals(intervals):
     if not intervals:
         return []
@@ -339,6 +371,7 @@ def merge_intervals(intervals):
 
 
 '''permutations(arr, r): This function returns all possible permutations of a list arr of length r.'''
+
 def permutations(arr, r):
     if r == 0:
         yield []
@@ -349,6 +382,7 @@ def permutations(arr, r):
 
 
 '''combinations(arr, r): This function returns all possible combinations of a list arr of length r.'''
+
 def combinations(arr, r):
     if r == 0:
         yield []
@@ -363,6 +397,7 @@ def combinations(arr, r):
 '''dijkstra(graph, start): This function computes the shortest path from a starting node start to all other nodes in a weighted directed graph graph using Dijkstra's algorithm.'''
 
 import heapq
+
 
 def dijkstra(graph, start):
     distances = {node: float('inf') for node in graph}
@@ -381,6 +416,7 @@ def dijkstra(graph, start):
 
 
 '''topological_sort(graph): This function performs a topological sort on a directed acyclic graph (DAG) represented as an adjacency list graph.'''
+
 def topological_sort(graph):
     in_degree = {node: 0 for node in graph}
     for node in graph:
@@ -401,6 +437,7 @@ def topological_sort(graph):
 
 
 '''bfs(graph, start): This function performs a breadth-first search on a graph graph starting at node start.'''
+
 def bfs(graph, start):
     visited = {node: False for node in graph}
     queue = [start]
@@ -414,6 +451,7 @@ def bfs(graph, start):
 
 
 '''get_divisors(n): This function returns a list of all divisors of an input integer n.'''
+
 def get_divisors(n):
     divisors = []
     for i in range(1, int(n**0.5) + 1):
@@ -425,6 +463,7 @@ def get_divisors(n):
 
 
 '''gcd_extended(a, b): This function calculates the extended greatest common divisor (GCD) of two numbers a and b, returning the GCD and two coefficients x and y such that ax + by = gcd(a, b).'''
+
 def gcd_extended(a, b):
     if b == 0:
         return a, 1, 0
@@ -434,5 +473,6 @@ def gcd_extended(a, b):
 
 
 '''manhattan_distance(p1, p2): This function calculates the Manhattan distance between two points p1 and p2, represented as tuples.'''
+
 def manhattan_distance(p1, p2):
     return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
