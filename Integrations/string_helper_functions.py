@@ -1,3 +1,5 @@
+to do
+
 Function 1: is_palindrome
 This function checks whether a given string is a palindrome or not. A palindrome is a string that is the same forwards and backwards.
 
