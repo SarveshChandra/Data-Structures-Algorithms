@@ -1,11 +1,8 @@
 #!/bin/bash
-
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt update
-sudo apt -y install g++
-sudo apt install software-properties-common
-sudo apt install python3
-
+add-apt-repository ppa:deadsnakes/ppa
+apt update
+# apt -y install g++
+apt install software-properties-common
+apt install python3
 cat define_run.sh >> ~/.bashrc
-
 exec bash
