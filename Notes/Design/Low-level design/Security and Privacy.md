@@ -107,4 +107,190 @@ Here's how this example relates to the security and privacy concepts:
 
 5. **Privacy through data minimization**: We're only storing the minimum amount of data necessary about the user: their username and hashed password.
 
-Remember, this is a simplified example for illustrative purposes. Real-world applications would need additional security measures, such as rate limiting, JWT tokens for authenticating API requests, and more.
+Real-world applications would need additional security measures, such as rate limiting, JWT tokens for authenticating API requests, and more.
+
+When it comes to security and privacy, there are several concerns to address, including data encryption, user authentication and authorization, input validation and sanitization, as well as protecting against common web vulnerabilities. Below are some advanced examples in Python focusing on these areas:
+
+1. **Data Encryption using Python Cryptography Library**
+The Python Cryptography library provides a robust set of tools for encrypting and decrypting data. Here's a simple example of symmetric encryption using Fernet:
+
+```python
+from cryptography.fernet import Fernet
+
+# Generate a key
+key = Fernet.generate_key()
+cipher_suite = Fernet(key)
+
+# Encrypt a message
+data = b"secret message"
+cipher_text = cipher_suite.encrypt(data)
+print(cipher_text)
+
+# Decrypt a message
+plain_text = cipher_suite.decrypt(cipher_text)
+print(plain_text)
+```
+
+2. **User Authentication and Authorization with Django**
+Django's authentication framework is robust and can handle user authentication, sessions, permissions and user groups. Here's an example of how to check a user's authentication status and permissions:
+
+```python
+from django.contrib.auth.decorators import login_required, permission_required
+
+@login_required
+def my_view(request):
+    ...
+
+@permission_required('polls.can_vote', login_url='/loginpage/')
+def vote_view(request):
+    ...
+```
+
+3. **Input Validation and Sanitization with Django Forms**
+Django forms are a good way to handle input validation and sanitization. When a form is submitted, Django automatically cleans the data and runs validation steps.
+
+```python
+from django import forms
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
+
+    def clean_message(self):
+        message = self.cleaned_data.get('message', '')
+        num_words = len(message.split())
+        if num_words < 4:
+            raise forms.ValidationError("Not enough words!")
+        return message
+```
+
+4. **Preventing SQL Injection Attacks**
+SQL injection is a common web security vulnerability. Django's ORM is designed to handle query parameterization for you to prevent SQL injection attacks. However, if you find yourself needing to write raw SQL queries, be sure to use parameterized queries instead of string formatting.
+
+```python
+from django.db import connection
+
+def custom_sql(query, params):
+    with connection.cursor() as cursor:
+        cursor.execute(query, params)
+        results = cursor.fetchall()
+    return results
+
+# Usage: note that parameters are not included in the query string
+custom_sql("SELECT * FROM my_table WHERE my_column = %s", ['my_value'])
+```
+
+These are just a few examples of how to use Python and Django for secure programming. Security is a broad topic and requires careful design and coding practices, so it's important to continue learning and applying best practices to keep your applications secure.
+
+Sure, let's look into some more advanced examples related to security in Python:
+
+**1. Cross Site Request Forgery (CSRF) Protection in Django:**
+
+Django has built-in middleware for protection against Cross-Site Request Forgeries, which is an attack that tricks the victim into submitting a malicious request. 
+
+You can enforce CSRF protection for particular views using the `csrf_protect` decorator:
+
+```python
+from django.views.decorators.csrf import csrf_protect
+
+@csrf_protect
+def my_view(request):
+    ...
+```
+
+**2. Password Hashing in Django:**
+
+Storing users' passwords securely is an essential part of web application security. Django provides a flexible password storage system and uses PBKDF2 by default.
+
+The `make_password` function can be used to create a hashed password, and `check_password` can verify a password against a hash.
+
+```python
+from django.contrib.auth.hashers import make_password, check_password
+
+hashed_pw = make_password('my_password')
+is_valid = check_password('my_password', hashed_pw)
+```
+
+**3. Django Permissions and Authorization:**
+
+Django has a built-in permissions system that allows you to specify what actions users and groups of users can perform. 
+
+```python
+from django.contrib.auth.decorators import permission_required
+
+@permission_required('polls.can_vote', login_url='/loginpage/')
+def vote_view(request):
+    ...
+```
+
+**4. Security Headers:**
+
+Django allows you to manage various HTTP security headers using the `SecurityMiddleware`. Here are some of the security headers and their corresponding settings:
+
+- Content Security Policy (CSP): `CSP_DEFAULT_SRC`
+- HTTP Strict Transport Security (HSTS): `SECURE_HSTS_SECONDS` and `SECURE_HSTS_INCLUDE_SUBDOMAINS`
+- X-Content-Type-Options: `SECURE_CONTENT_TYPE_NOSNIFF`
+- X-Frame-Options: `X_FRAME_OPTIONS`
+  
+You can add these settings to your Django settings file (`settings.py`).
+
+**5. Advanced SQL Injection Protection with Django:**
+
+While Django's ORM does a good job of preventing SQL injection attacks, you might need to write raw SQL queries sometimes. In these cases, it's essential to use parameterized queries and never use string formatting. Django provides the `params` argument in the `raw()` method for this purpose.
+
+```python
+MyModel.objects.raw('SELECT * FROM my_table WHERE my_column = %s', ['my_value'])
+```
+
+Always keep in mind that maintaining security is not a one-time task but requires continuous learning, vigilance, and best practices.
+
+Sure, let's dive deeper into more advanced security topics and Python examples:
+
+**1. Input Validation**
+
+Always validate user input to prevent common security issues, like SQL injection and XSS attacks. Python's built-in functions can be used for input validation. Here's an example of a simple email validation:
+
+```python
+import re
+
+def validate_email(email):
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        raise ValueError("Invalid email address")
+```
+
+**2. Secure File Uploads in Django**
+
+File uploads are a common requirement, but they can pose a security risk if not handled properly. Here's how you can securely handle file uploads in Django:
+
+```python
+from django.core.exceptions import ValidationError
+
+def validate_file_extension(value):
+    if value.file.content_type != 'application/pdf':
+        raise ValidationError(u'Only PDF files are allowed.')
+
+class Upload(models.Model):
+    file = models.FileField(upload_to='uploads/', validators=[validate_file_extension])
+```
+
+**3. HTTPS and SSL/TLS**
+
+Use HTTPS instead of HTTP to secure the data in transit between the client and the server. Django doesn't handle SSL/TLS itself; it's typically handled by a separate web server or a reverse proxy in front of Django. However, Django can use the information about the connection security that these servers provide. Here's how to force HTTPS in Django:
+
+```python
+# In settings.py
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+```
+
+**4. Secret Key Management**
+
+Don't hard-code secrets in your code. Use environment variables or dedicated secret management systems. Here's an example of how to load the secret key from an environment variable in Django:
+
+```python
+# In settings.py
+import os
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+```
+
+Remember that this is an extensive and ongoing field of study, and security needs can vary greatly depending on the specifics of your project. You should keep your knowledge up-to-date and regularly review your project for potential security issues.

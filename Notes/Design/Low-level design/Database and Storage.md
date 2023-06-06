@@ -322,3 +322,161 @@ Examples of ORMs include SQLAlchemy for Python, Hibernate for Java, and ActiveRe
 ### Example
 
 Using Django's ORM in Python, instead of writing a SQL query like SELECT * FROM Users WHERE username='john';, you can write User.objects.get(username='john'). The ORM converts this Python code into SQL under the hood, and you can work with john as a Python object.
+
+Sure! Here are some examples of interacting with databases, normalization, indexing, transactions, and storage design using Python and Django:
+
+**1. SQL (Using SQLite)**
+```python
+import sqlite3
+conn = sqlite3.connect('example.db')
+
+c = conn.cursor()
+
+# Create table
+c.execute('''CREATE TABLE stocks
+             (date text, trans text, symbol text, qty real, price real)''')
+
+# Insert a row of data
+c.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
+
+# Save (commit) the changes
+conn.commit()
+
+# We can also close the connection if we are done with it.
+# Just be sure any changes have been committed or they will be lost.
+conn.close()
+```
+
+**2. NoSQL (Using MongoDB with PyMongo)**
+```python
+from pymongo import MongoClient
+
+client = MongoClient()
+
+db = client['test-database']
+
+# Create a document
+post = {"author": "Mike", "text": "My first blog post!"}
+
+# Insert a document
+posts = db.posts
+post_id = posts.insert_one(post).inserted_id
+
+# Querying for documents
+posts.find_one({"author": "Mike"})
+```
+
+**3. Normalization**
+Normalization involves designing your database schema to minimize redundancy and improve data integrity. Here's an example:
+
+Before normalization:
+```
+Orders
+------
+OrderID
+CustomerID
+CustomerName
+CustomerAddress
+ProductID
+ProductName
+ProductPrice
+Quantity
+```
+
+After normalization:
+```
+Customers       Products            Orders             OrderDetails
+---------       --------            ------             ------------
+CustomerID      ProductID           OrderID            OrderID
+CustomerName    ProductName         CustomerID         ProductID
+CustomerAddress ProductPrice        OrderDate          Quantity
+```
+
+**4. Indexes**
+Indexes speed up querying but slow down writes. Here's an example of creating an index in SQLite:
+
+```python
+c.execute("CREATE INDEX idx_symbol ON stocks (symbol)")
+```
+
+**5. Transactions**
+Transactions ensure that a group of database operations are atomic (i.e., either all succeed or all fail). Here's an example in SQLite:
+
+```python
+# Start a transaction
+c.execute('BEGIN TRANSACTION')
+
+try:
+    c.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','RHAT',100,35.14)")
+    c.execute("INSERT INTO stocks VALUES ('2006-01-05','BUY','GOOG',100,350.14)")
+    
+    # Commit the transaction if all commands were successful
+    conn.commit()
+except:
+    # Rollback the transaction if any commands failed
+    conn.rollback()
+```
+
+**6. Storage Design**
+Storage design involves determining how your data will be stored and accessed. For example, should you use a relational database or a NoSQL database? Should you use cloud storage or local storage? These decisions depend on your specific use case.
+
+Django ORM (Object-Relational Mapping) makes it easy to interact with your database, like fetching objects from database, saving, updating and deleting.
+```python
+# Suppose you have a Django model named Book in your application
+from myapp.models import Book
+
+# Fetch all books
+all_books = Book.objects.all()
+
+# Create a new book
+new_book = Book(title='New Book', author='John Doe', price='25.99')
+new_book.save()
+
+# Update a book
+book_to_update = Book.objects.get(id=1) # fetch the book to update
+book_to_update.price = '19.99'
+book_to_update.save()
+
+# Delete a book
+book_to_delete = Book.objects.get(id=2) # fetch the book to delete
+book_to_delete.delete
+
+()
+```
+
+These are some very basic examples to give you a brief overview of how to interact with databases using Python and Django. In actual development process, there are a lot more considerations for database and storage design, transaction handling, using indexes and normalization.
+
+In the world of databases, sharding, replication, and caching are advanced topics that are more often than not implemented at the database level and not within the application itself. This is because these techniques involve how data is distributed and managed across multiple machines or servers, which is typically a concern of the database rather than the application that's using the database. However, the application can determine how it interacts with these concepts. Here are brief overviews of these concepts:
+
+**1. Sharding:**
+Sharding is a database technique where data is partitioned into smaller, more manageable pieces called 'shards'. Each shard is held on a separate database server instance to spread the load and to overcome the limitations of having a single server. For instance, the MongoDB driver for Python supports sharding at the database level and you can interact with a sharded cluster in the same way you interact with a non-sharded MongoDB database.
+
+**2. Replication:**
+Database replication is the frequent electronic copying data from a database in one computer or server to a database in another so that all users share the same level of information. This can be done in various ways like snapshot replication, merge replication, and transactional replication. Replication is a complex task often done at the database level and most popular databases support replication out of the box, including MySQL, PostgreSQL, MongoDB, etc.
+
+**3. Caching:**
+Caching can drastically speed up your application by storing frequently accessed data in a faster storage system. Here's a simple example of how you might use caching in Python with Redis:
+
+```python
+import redis
+
+# Create a redis client
+r = redis.Redis(host='localhost', port=6379, db=0)
+
+def get_data(id):
+    # Try to get the result from the cache
+    data = r.get(id)
+    
+    if data is None:
+        # If the data isn't in the cache, get it from the database
+        data = get_data_from_database(id)
+        
+        # Store the result in the cache for 1 hour
+        r.setex(id, 3600, data)
+
+    return data
+```
+
+In this example, `get_data` first tries to get the requested data from the Redis cache. If the data is not in the cache, it fetches the data from the database, then stores the result in the cache for 1 hour.
+
+Please note, these topics are extensive and cannot be fully explained or exemplified in a few lines of code. It is suggested to dive deeper into each topic with comprehensive resources and documentation.
