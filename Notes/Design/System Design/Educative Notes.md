@@ -1,11 +1,4 @@
-Important
-1. scaling cache
-2. queue systems
-3. basics of internet
-4. basics of OS
-
-
-Grokking the System Design Interview (Educative)
+*Grokking the System Design Interview (Educative)*
 
 ## 1. System design basics
     1.1 distributed system and architectures
