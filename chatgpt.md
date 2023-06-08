@@ -12,3 +12,19 @@ DSA
     4. please act like a software developer expert and provide custom helper functions in python language to solve DSA problems. Also, add proper comments.
 
     [give all built-in helper functions in python to solve dsa problems]
+
+Resume
+
+    Act as a professional resume writer and tailor my resume based on the job description.
+    
+    Here is my resume:
+
+    <resume>
+
+    Here is the job description:
+
+    <job description>
+
+Linkedin
+
+    Craft a concise Linkedin outreach message with a strong call to action to connect with a hiring manager at <eg. amazon> for a <eg. cloud engineer> role.
