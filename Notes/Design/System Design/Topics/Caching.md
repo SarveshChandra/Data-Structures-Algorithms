@@ -284,3 +284,113 @@ Here's how CDNs work:
 Some popular CDN providers include Akamai, Cloudflare, Fastly, and Amazon CloudFront.
 
 In summary, both application server caching and CDNs play a crucial role in improving application performance and user experience. While application server caching enhances performance by reducing the load on the server, CDNs focus on minimizing latency for end users scattered geographically. Together, they form essential components of a comprehensive caching strategy.
+
+## QnAs
+
+Certainly, here are some interview questions and their answers regarding caching:
+
+**1. Question: What is caching, and why is it important in system design?**
+
+Answer: Caching is a technique used to store copies of frequently accessed data in a location close to the requesting entity to reduce data access times. It's important in system design because it helps in improving system performance and scalability by reducing the load on the main server and decreasing data access latency.
+
+**2. Question: Can you explain the difference between write-through, write-around and write-back cache?**
+
+Answer: Write-through cache updates the cache and the backing store location at the same time. This leads to lower latency reads, but higher latency writes. Write-around cache updates the backing store but not the cache. This reduces the chance of a cache becoming filled with write data that may not subsequently be re-read, but reads can be slower if the data is not in cache. Write-back cache only updates the cache with write data, the write to the backing store is delayed until the cache blocks are replaced. This can result in faster write operations but there is a risk of data loss in case of a crash before the data is written to the backing store.
+
+**3. Question: What is cache eviction and which policies are commonly used?**
+
+Answer: Cache eviction is the process of deciding which items to remove from the cache when it is full. Common policies include Least Recently Used (LRU), where the least recently accessed item is evicted; First In, First Out (FIFO), where the oldest item is evicted; and Least Frequently Used (LFU), where the least often accessed item is evicted. 
+
+**4. Question: What are the benefits and drawbacks of using a cache?**
+
+Answer: Benefits include reduced latency, reduced load on the main server, and increased overall system performance. Drawbacks can include the complexity of maintaining cache consistency, especially in distributed systems, the potential for stale data if not properly managed, and the additional infrastructure cost of maintaining a caching layer.
+
+**5. Question: What factors would you consider when deciding what to cache?**
+
+Answer: Factors to consider might include: the cost of regenerating or fetching the data, how often the data is accessed, how much the data changes (with more static data being more suitable for caching), and the impact of serving stale data (if it's acceptable, caching becomes more attractive). The size of the data might also be a consideration, especially in systems with limited cache size. 
+
+**6. Question: What is cache coherency and how can it be maintained in a distributed system?**
+
+Answer: Cache coherency refers to the consistency of shared resource data in multiple cache locations. In a distributed system, maintaining cache coherency often involves implementing a strategy to ensure that when data is updated, all cached copies of the data are also updated (or invalidated). Strategies can include write-through or write-back cache, cache invalidation protocols, or even distributed caching solutions like Memcached or Redis. 
+
+**7. Question: How can caching lead to a stale data problem? How can you prevent it?**
+
+Answer: Stale data is data that is outdated and does not reflect the current true values. This can occur in a cache when the underlying data source is updated but the cache is not. To prevent this, cache invalidation strategies are used to ensure that cached data is updated or removed when the data source is changed. These strategies can include polling, TTL-based invalidation, write-through or write-back policies, and event-driven invalidation.
+
+Sure, here are some more potential interview questions and answers related to caching:
+
+**1. Question: What are the differences between a cache hit and a cache miss?**
+
+Answer: A cache hit occurs when the requested data is found in the cache. A cache miss, on the other hand, occurs when the requested data is not found in the cache, necessitating a fetch from the backing store. The efficiency of a cache is often measured by its hit rate (the percentage of accesses that result in a hit) and its miss rate (the percentage of accesses that result in a miss).
+
+**2. Question: What's the difference between local caching and distributed caching?**
+
+Answer: Local caching refers to storing cached data on the same machine or process that is consuming the data, while distributed caching involves storing cached data across multiple nodes or systems in a network, allowing multiple clients or servers to access and share the cache. Local caching is simpler but can lead to cache duplication and inconsistency across nodes. Distributed caching is more complex but provides greater capacity and avoids the issues of duplication and inconsistency.
+
+**3. Question: Explain what a Content Delivery Network (CDN) is and how it relates to caching.**
+
+Answer: A Content Delivery Network (CDN) is a geographically distributed network of proxy servers and data centers that work together to provide high availability and performance. CDNs serve a large portion of Internet content today, including web objects (text, graphics, scripts), downloadable objects (media files, software, documents), applications, and other components of internet delivery. The key principle of a CDN is caching - most CDNs serve content from cache, and only fetch content from the origin server when the cache expires or when the content is not in the cache.
+
+**4. Question: Can you discuss some popular caching systems and where they are typically used?**
+
+Answer: Memcached and Redis are two popular in-memory caching systems. Memcached is often used for caching results of database calls, API calls, or page rendering. Redis, while it can do all that Memcached can, also supports data structures such as lists, sets, and hashes, and offers features like replication, persistence, and Lua scripting. Varnish is a popular HTTP cache used to speed up web applications by caching content in memory. CDNs like Cloudflare and Akamai are used for caching and serving static resources close to the user's geographic location.
+
+**5. Question: What does 'cache warming' mean?**
+
+Answer: Cache warming is the process of loading data into the cache prior to its use. This can be particularly useful in cases where a cache has been purged or invalidated, such as after a system restart or a cache failure. By warming the cache (that is, preloading it with the relevant data), you can ensure that the system continues to provide fast responses, instead of suffering a temporary performance penalty while the cache repopulates. 
+
+**6. Question: How do Time-to-live (TTL) values affect a caching strategy?**
+
+Answer: Time-to-live (TTL) is a mechanism that determines how long data should be stored in a cache before being automatically removed. This can help ensure that data in the cache does not become too stale. If the TTL is too short, it might lead to frequent cache misses and increased load on the backend services; if it is too long, the cache might serve stale data. Hence, choosing an appropriate TTL is a key part of a caching strategy.
+
+Absolutely, here are some more potential interview questions and answers related to caching:
+
+**1. Question: How does caching help in database scaling?**
+
+Answer: Caching helps in database scaling by reducing the load on the database. Frequently accessed data is stored in the cache, so that future requests for the same data can be served directly from the cache instead of hitting the database. This can greatly reduce the number of read operations on the database, allowing it to handle more write operations and/or serve more users.
+
+**2. Question: Can you discuss the term "cache poisoning" and how it could be a security concern?**
+
+Answer: Cache poisoning refers to the act of inserting malicious data into a cache. An attacker could use this method to cause a service to return incorrect results, redirect traffic, or perform other malicious activities. To mitigate this, services can use techniques such as validating input, using secure cache update mechanisms, and regularly clearing the cache.
+
+**3. Question: What does "cache busting" mean?**
+
+Answer: Cache busting is a technique used to prevent browsers or intermediaries (like CDNs) from serving outdated or stale cached content. This is typically achieved by adding a unique identifier like a version number or timestamp to the URLs of the content (like CSS or JavaScript files). When the content is updated, the identifier changes, making the URL unique and forcing the browser or CDN to fetch the updated content instead of serving the old content from cache.
+
+**4. Question: Can caching be applied at multiple levels in a system? Can you give some examples?**
+
+Answer: Yes, caching can be applied at multiple levels in a system. For example, in a typical web application stack, you could have a CDN caching static assets at the edge locations, an in-memory cache like Redis or Memcached on the application server to cache frequently accessed data, and query-level cache in the database to cache results of frequent queries.
+
+**5. Question: What are idempotent and safe methods in HTTP? How do they relate to caching?**
+
+Answer: In HTTP, methods are considered idempotent if the result of performing the same request multiple times is the same as if it were made just once. GET, PUT, and DELETE are idempotent methods. Safe methods are HTTP methods that do not modify resources. GET and HEAD are examples of safe methods. Safe methods can be cached as they don't change the state of the resource, and idempotent methods can also be helpful in caching because repeating them doesn't change the outcome.
+
+**6. Question: What is the purpose of ETag and If-None-Match headers in HTTP caching?**
+
+Answer: ETag and If-None-Match headers are used for cache validation to determine if a resource in the client’s cache matches the one on the origin server. ETag is a response header returned by the server to define the state of a resource. The client can then use the If-None-Match header with the ETag value to ask the server if the resource has changed. If the resource hasn’t changed, the server returns a 304 Not Modified status, saving the need to send the resource again.
+
+Sure, here are more potential interview questions and answers related to caching:
+
+**1. Question: How would you handle cache eviction?**
+
+Answer: Cache eviction policies decide which items to remove from the cache when the cache is full and new items need to be added. There are several strategies for cache eviction, some of which include:
+- Least Recently Used (LRU): This policy evicts the least recently used items first.
+- First In, First Out (FIFO): This policy evicts items in the order they were added.
+- Least Frequently Used (LFU): This policy evicts the least frequently used items first.
+The right policy depends on the specific use case and the access patterns of the data.
+
+**2. Question: What do you understand by cache coherence?**
+
+Answer: Cache coherence refers to the consistency of shared resource data in multiple cache locations. When multiple copies of the same data are cached in different places, such as in a distributed system, it's important to have a strategy for ensuring that all caches have the most recent version of the data, i.e., they are coherent. This typically involves using a coherence protocol that defines how to handle reads and writes to shared data.
+
+**3. Question: How does a write-through cache work?**
+
+Answer: In a write-through cache, data is simultaneously written into the cache and the corresponding database or storage system. This ensures that data in the cache is always up to date with the database, but it may result in higher latency for write operations because a write is only considered complete when it has been written to both the cache and the database.
+
+**4. Question: How does a write-back cache work and how does it differ from a write-through cache?**
+
+Answer: In a write-back cache, data is initially written only to the cache. The write to the corresponding database or storage system is done later, often in batches. This can result in lower latency for write operations because a write is considered complete as soon as it is written to the cache. However, there is a risk of data loss if the cache data has not yet been written back to the database and the cache fails. The main difference from a write-through cache is the timing of the write to the database: immediate in write-through caching and delayed in write-back caching.
+
+**5. Question: What is a cache stampede and how would you prevent it?**
+
+Answer: A cache stampede, also known as cache thrashing, is a situation where multiple clients try to access a cache for a specific piece of data that has just expired, causing all the clients to attempt to regenerate the data and write it to the cache simultaneously. This can lead to a significant increase in the load on the system. One common way to prevent cache stampedes is by using a technique called "lock and compute", where the first client to request the expired data locks the cache entry and starts computing the new data, while other clients continue to read the old data until the new data is ready. Another approach is to randomize the expiration times of cache entries so that not all entries expire at once.
