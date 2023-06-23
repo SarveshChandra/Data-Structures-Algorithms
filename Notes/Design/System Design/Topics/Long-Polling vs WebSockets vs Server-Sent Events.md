@@ -165,3 +165,51 @@ Sure, here are a few more interview questions and their answers on Long Polling,
 **5. Question: How would you handle reconnections in a Server-Sent Event scenario?**
 
    Answer: In the event of a connection loss in a Server-Sent Event scenario, the browser will automatically try to reconnect to the server. However, we can also manually control this behavior. For instance, we can listen for the 'error' event on the EventSource object, which is fired when an error occurs, like a loss of connection. In the error handler, we can implement a reconnection strategy, which might involve setting a timeout before attempting to reconnect, or incrementing the timeout after each failed attempt to avoid overloading the server.
+
+Sure, here are some interview questions and answers related to Long-Polling, WebSockets, and Server-Sent Events in system design:
+
+**1. Question: Can you explain the difference between long-polling, WebSockets, and Server-Sent Events?**
+
+Answer: Long-polling, WebSockets, and Server-Sent Events are all techniques used to establish a real-time connection between a client and a server, but they differ in several ways.
+
+Long-polling is a variation of the traditional polling method, where the client sends a request to the server and waits for a response. In long-polling, the server holds the request open until new data is available.
+
+WebSockets provide a full-duplex communication channel over a single TCP connection. This allows the server and client to communicate with each other independently and simultaneously, which is a significant improvement over long-polling.
+
+Server-Sent Events (SSE) allow a server to send updates to a client over HTTP, but not the other way around. It's a one-way communication channel where the client initiates the connection, and the server keeps it open to send data whenever it's available.
+
+**2. Question: Can you give an example of an appropriate use case for WebSockets, Long-polling, and Server-Sent Events?**
+
+Answer: WebSockets would be beneficial in an application that requires bidirectional communication between the client and the server, like a chat application or an online multiplayer game.
+
+Long-polling might be used in an application where the server updates are infrequent, and the overhead of opening a new connection for each update is acceptable.
+
+Server-Sent Events could be used in applications where the server needs to send updates to the client, but the client doesn't need to send data to the server, like a live news update or a stock price ticker.
+
+**3. Question: What are some of the advantages and disadvantages of WebSockets?**
+
+Answer: The main advantage of WebSockets is that they provide full-duplex communication over a single, long-lived connection, which can be more efficient than other techniques when there's a lot of back-and-forth communication. They also provide a level of control over the transmission of data that's not available with HTTP-based techniques.
+
+However, WebSockets can be more complex to set up and use than HTTP-based techniques, and not all environments and proxies support them. They also don't automatically recover from connection losses, so you need to handle this in your code.
+
+**4. Question: How do Server-Sent Events handle reconnection attempts in case of connection loss?**
+
+Answer: With Server-Sent Events, if a connection is lost, the browser automatically tries to reconnect to the server after a few seconds. You can also control the reconnection time by sending a "retry" field in the server's response. This feature is built into the Server-Sent Events API, making it easier to handle connection losses compared to WebSockets.
+
+**5. Question: What is HTTP/2 Server Push, and how does it compare to Server-Sent Events and WebSockets?**
+
+Answer: HTTP/2 Server Push allows a server to send resources to a client proactively, without the client requesting each one explicitly. This can be beneficial for performance because it allows the server to send all the resources that a client will need to render a page in response to a single request.
+
+However, Server Push is not a replacement for Server-Sent Events or WebSockets. Server Push is designed for sending resources associated with a web page, like CSS, JavaScript, and images, while Server-Sent Events and WebSockets are designed for sending arbitrary data updates. Also, Server Push is a one-way communication mechanism.
+
+Sure, here are some more interview questions and answers related to Long-Polling, WebSockets, and Server-Sent Events in system design:
+
+**6. Question: When would you use Long-Polling vs WebSockets vs Server-Sent Events?**
+
+Answer: The choice depends largely on the requirements of your application.
+
+Long-Polling could be used when you need real-time communication but WebSockets or Server-Sent Events aren't supported by your environment or the client's browser. However, Long-Polling can be less efficient because it involves repeated HTTP requests.
+
+WebSockets are a good choice when you need full-duplex, bidirectional communication between the client and the server. For example, in a chat application or a collaborative web app, where updates can come from both the client and the server.
+
+Server-Sent Events are ideal when you need real-time updates from server to client but not from client to server. For example, in a real-time analytics dashboard where the server sends updates to the client but the client doesn't need to send any data to the server.

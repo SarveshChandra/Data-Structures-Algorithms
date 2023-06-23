@@ -112,3 +112,67 @@ Redundant load balancing involves having a backup load balancer ready to take ov
 2. **Active-Active:** In this setup, multiple load balancers are active and distributing traffic simultaneously. If one fails, the others continue distributing the traffic.
 
 By using redundant load balancers, you can increase the reliability and availability of your system, ensuring that it remains operational even if a load balancer fails.
+
+## QnAs
+
+Sure, here are a few interview questions and answers related to load balancers in system design:
+
+**1. Question: Can you explain what a load balancer is and what it does in a system architecture?**
+
+Answer: A load balancer is a critical component in a system architecture designed to distribute network or application traffic across many servers. It ensures no single server bears too much demand, which can help increase system reliability, availability, and performance. A load balancer effectively serves as the "traffic cop" for incoming requests to a server infrastructure.
+
+**2. Question: What are some common load balancing algorithms?**
+
+Answer: Some of the most common load balancing algorithms include:
+
+- Round Robin: Distributes connections evenly across all servers in a circular order. It's the simplest method and works well when all servers have similar capacities.
+  
+- Least Connections: Directs traffic to the server with the fewest active connections. It's beneficial when servers have varied capacities.
+
+- IP Hash: Uses the IP address of the client or server to determine which server to direct the traffic to. It can help with session persistence.
+
+- Weighted: Similar to the round robin, but servers are assigned a weight based on their processing capacity.
+
+**3. Question: Can you discuss how load balancers can contribute to system scalability?**
+
+Answer: Load balancers can contribute significantly to system scalability. As demand increases, rather than upgrading a single server (scaling up), we can add more servers (scaling out) and use a load balancer to distribute the traffic across them. This makes it easier and more cost-effective to handle increased load, as we can add or remove servers as needed based on the current demand.
+
+**4. Question: What are the differences between Layer 4 and Layer 7 load balancing?**
+
+Answer: Layer 4 and Layer 7 refer to different layers in the OSI model. Layer 4 load balancing operates at the transport level, where data is treated as a raw transport-level segment. It's more basic and faster, mainly dealing with TCP and UDP packets, and doesn't look into the content of these packets.
+
+Layer 7 load balancing operates at the application level. It can read the contents of the network traffic and make decisions based on the content, such as HTTP headers, cookies, or other application-level signals. Layer 7 load balancing can be slower but offers more sophisticated and flexible load distribution policies.
+
+**5. Question: What is session persistence in load balancing and why is it important?**
+
+Answer: Session persistence, also known as session affinity or sticky sessions, is a method used in load balancing where a client is consistently connected to the same server for the duration of a "session" or while the connection is live. This is important for applications where data is stored in the server's memory and needs to be accessed by subsequent requests from the same client. Without session persistence, a user might have to re-authenticate or might lose their data as they get connected to a different server with each request.
+
+Sure, here are some more interview questions and answers related to load balancers in system design:
+
+**1. Question: What are some of the challenges of load balancing?**
+
+Answer: Some challenges of load balancing include:
+- **Ensuring Session Persistence**: In many web applications, a user's session data is stored on the server for convenience and efficiency. If a user's requests aren't consistently routed to the same server, their session data might not be found, resulting in errors.
+- **Balancing Loads Effectively**: Different servers might have different capacities, and different requests might require different resources. A load balancer needs to take these factors into account to distribute the load effectively.
+- **Managing Dynamic Server Sets**: In many modern applications, the set of servers can change dynamically – servers might be added or removed based on demand. The load balancer needs to handle these changes without disrupting the service.
+- **Handling Failures**: If a server fails, the load balancer needs to detect this quickly and stop sending traffic to that server.
+
+**2. Question: What is the difference between active and passive load balancing strategies?**
+
+Answer: Active load balancing is where the load balancer continually monitors the health and performance of the servers and dynamically adjusts the distribution of workload based on this information. This strategy can achieve a more optimal distribution of load, but it requires more resources for monitoring and decision-making.
+
+Passive load balancing, on the other hand, uses a simpler and more static method of distributing the load, like Round Robin or IP Hash, without considering the current load or health of the servers. It's less resource-intensive but might not distribute the load as effectively, especially if the servers have different capacities or if the load varies a lot.
+
+**3. Question: Can you explain the concept of a reverse proxy and how it relates to load balancing?**
+
+Answer: A reverse proxy is a server that sits between client devices and a web server, forwarding client requests to the web server and returning the server's responses back to the clients. This can provide several benefits like load balancing, SSL termination, and caching.
+
+In the context of load balancing, a reverse proxy can distribute client requests across multiple servers, effectively acting as a load balancer. When it receives a request, it decides which server to forward the request to, based on a load balancing algorithm. It can also monitor the health of the servers and stop sending requests to a server if it fails.
+
+**4. Question: How does a load balancer work in a microservices architecture?**
+
+Answer: In a microservices architecture, each microservice runs in its own server or container, and there can be multiple instances of each microservice to handle the load. A load balancer is used to distribute requests to these instances. When a request comes in for a particular microservice, the load balancer selects one of the instances of that microservice to handle the request, based on its load balancing algorithm. It can also perform other functions like health checks, SSL termination, and session persistence. 
+
+**5. Question: How can a load balancer improve the reliability and availability of a system?**
+
+Answer: A load balancer can improve the reliability and availability of a system in several ways. By distributing the load across multiple servers, it reduces the risk of any single server becoming a bottleneck or failing under heavy load. If a server fails, the load balancer can detect this and stop sending traffic to that server, minimizing the impact of the failure. It can also provide redundancy – if one load balancer fails, another can take over. Finally, by offloading tasks like SSL termination and caching from the servers, it can free up server resources and improve performance.

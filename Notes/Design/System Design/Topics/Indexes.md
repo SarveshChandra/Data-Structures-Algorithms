@@ -62,6 +62,8 @@ Most databases provide tools for analyzing query plans, often referred to as "ex
 
 In summary, indexing is a complex but vital aspect of system design. By understanding the fundamentals of indexing, you can design systems that retrieve data more efficiently, leading to more responsive applications.
 
+## Example
+
 Sure, let's take a look at a concrete example. Imagine that you are building an e-commerce system. One of your tables in the database might be an "orders" table, where you store information about all customer orders.
 
 The orders table may have the following columns: 
@@ -102,3 +104,49 @@ By choosing the right indexes based on your application's needs, you can signifi
 It's also important to note that as your application's needs change, you might need to revisit your indexing strategy. Regularly profiling and monitoring your application’s performance can guide you in making adjustments to your indexes.
 
 Remember, while indexes can improve read performance, they do come with trade-offs. They can slow down write operations (since indexes also need to be updated when data changes) and consume additional disk space. Therefore, it's important to create indexes judiciously based on your application's needs.
+
+## QnAs
+
+Sure, here are a few interview questions and answers related to indexes in system design:
+
+**1. Question: What is an index in the context of databases and why is it useful?**
+
+Answer: In the context of databases, an index is a data structure that improves the speed of data retrieval operations. It works similarly to an index in a book. Instead of going through every "page" (row), which can be time-consuming for large databases, an index allows the database to directly access the "page" where the data is stored. By reducing the amount of data that needs to be examined, indexes can significantly improve performance, especially for large tables.
+
+**2. Question: Can you explain the difference between clustered and non-clustered indexes?**
+
+Answer: A clustered index determines the physical order of data in a table. Each table can have only one clustered index because data rows can be sorted in only one order. Non-clustered indexes, on the other hand, do not alter the physical order of data but create a logical order that exists separately from the data rows, similar to an index in a book. As such, a table can have multiple non-clustered indexes.
+
+**3. Question: What is the cost of using indexes?**
+
+Answer: While indexes can speed up data retrieval, they come with costs. First, every index requires additional disk space, sometimes significant for large tables. Second, while an index speeds up read operations, it can slow down write operations (INSERT, UPDATE, DELETE) because every change to the data needs to also update the index. Thus, a balance must be found between read efficiency and write efficiency.
+
+**4. Question: When would you not want to use an index in a database?**
+
+Answer: Indexes may not be beneficial when the table is small, and the overhead of maintaining the index outweighs the benefits. They are also less beneficial on columns with many duplicate values or on columns that are frequently modified because each change requires an update of the index. Also, if queries do not filter data based on the indexed column, the index won't be used and therefore is unnecessary.
+
+**5. Question: How would you choose which columns to index in a database?**
+
+Answer: The decision to index a column depends on several factors. You would generally want to index columns that are frequently used in WHERE clauses, JOIN conditions, and ORDER BY clauses. However, columns that are frequently updated might not be the best candidates for indexing due to the overhead of maintaining the index. It's also important to consider the selectivity of the column; columns with a high degree of uniqueness (like unique IDs) are typically good candidates for indexing.
+
+Absolutely, here are some additional interview questions and answers on indexes in system design:
+
+**1. Question: What is a B-tree and how does it relate to database indexing?**
+
+Answer: A B-tree is a self-balancing tree data structure that maintains sorted data and allows for efficient insertion, deletion, and search operations. It's commonly used in database indexing. The leaves of the B-tree contain the actual data entries, while the internal nodes act as navigational elements directing the database to the desired data entry.
+
+**2. Question: What is a full table scan and how does it relate to indexing?**
+
+Answer: A full table scan occurs when the database engine inspects every row in a table to satisfy a query. This can be quite slow, especially with large tables. Indexes help to avoid full table scans by providing faster direct or range access to the desired data.
+
+**3. Question: Can you explain how a multi-column index works and when it could be useful?**
+
+Answer: A multi-column index, also known as a composite index, is an index that includes more than one column. These indexes can be useful when queries often filter or sort by certain combinations of columns. However, the order of columns in the index and the query can affect its effectiveness. For instance, if you have a multi-column index on (LastName, FirstName), it would be used for queries filtering by LastName, or LastName and FirstName, but not FirstName alone.
+
+**4. Question: How do you handle indexing with very large databases?**
+
+Answer: Handling indexing in very large databases can be challenging due to the space and maintenance overhead of indexes. Techniques to manage this can include using partial indexes (where only a subset of the data is indexed, based on some condition), using smaller, more efficient data types, and carefully considering the trade-off between read and write efficiency before adding indexes. 
+
+**5. Question: What is an index seek vs. an index scan in the context of databases?**
+
+Answer: An index seek is an operation that uses the index to find a specific record or group of records satisfying certain conditions. It's analogous to looking up a word in a book's index. An index scan, on the other hand, is an operation that goes through the entire index, just like scanning all entries in a book's index. Index seeks are generally more efficient than index scans, but the latter might be necessary if the desired data cannot be precisely located using the index.
