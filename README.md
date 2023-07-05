@@ -1,5 +1,5 @@
 # Data Structures and Algorithms
-Data Structures and Algorithms with Python
+Data Structures, Algorithms and Design
 
 ## Init g++ | python | custom run command
 Compile and execute cpp files with g++ linux package in your linux machine or your WSL distro. I have created a function run() to use the g++ command along with std=c++17 compiler mode and then run the generated output file in the same terminal at the same time.

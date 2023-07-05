@@ -480,3 +480,157 @@ def get_data(id):
 In this example, `get_data` first tries to get the requested data from the Redis cache. If the data is not in the cache, it fetches the data from the database, then stores the result in the cache for 1 hour.
 
 Please note, these topics are extensive and cannot be fully explained or exemplified in a few lines of code. It is suggested to dive deeper into each topic with comprehensive resources and documentation.
+
+## QnAs
+
+Sure, here are some potential interview questions and potential answers on Database and Storage in Low-Level Design:
+
+1. **Explain the concept of database normalization. What are its advantages and disadvantages?**
+
+   Database normalization is a process used to organize a database into tables and columns. The main idea with this is that a table should be about a specific topic and that only those columns which support that topic are included. 
+
+   Advantages of normalization include:
+   - Greater overall database organization.
+   - Reduction of redundant data.
+   - Data consistency within the database.
+
+   Disadvantages of normalization include:
+   - It can result in increased complexity of queries, as data is distributed amongst many tables.
+   - Performance can be reduced due to table joins.
+
+2. **What is an index in a database? Can you explain the trade-offs in using them?**
+
+   An index is a data structure that improves the speed of data retrieval operations on a database table. It provides quick direct access to rows in a table based on column values. 
+
+   While indices speed up query execution, they also have some downsides:
+   - They consume storage space.
+   - They can slow down the speed of write operations (INSERT, UPDATE, DELETE) because every time data is changed, indices need to be updated as well.
+
+3. **What is sharding in databases?**
+
+   Sharding is a type of database partitioning that separates very large databases into smaller, faster, more manageable parts called data shards. Each shard is held on a separate database server instance, to spread the load.
+
+4. **What is a SQL transaction and why is it important?**
+
+   A SQL transaction is a unit of work performed against a database. Transactions are important because they ensure data integrity. They are a protective mechanism that ensures that all operations within a transaction are completed successfully; if not, then the transaction is aborted at the point of failure, and all the previous operations are rolled back to their former state.
+
+5. **What is ACID in databases?**
+
+   ACID stands for Atomicity, Consistency, Isolation, Durability. It's a set of properties that guarantee that database transactions are processed reliably.
+   
+   - Atomicity: The whole transaction is processed or nothing is processed. A transaction cannot be in a half-completed state.
+   - Consistency: A transaction brings a database from one valid state to another valid state. It does not violate any database constraints.
+   - Isolation: Ensures that the concurrent execution of transactions results in a system state that would be obtained if transactions were executed serially.
+   - Durability: Once a transaction has been committed, it will remain committed even in the case of a system failure.
+
+Remember, the depth of your answer would depend on the position you're applying for. Always tailor your responses to the job requirements and your personal experience.
+
+Sure, here are more potential interview questions and potential answers on Database and Storage in Low-Level Design:
+
+1. **What are the differences between SQL and NoSQL databases? Can you give some examples where you would use each?**
+
+   SQL databases are relational, table-based databases, whereas NoSQL databases are non-relational and can be document-based, key-value pairs, graph databases, or wide-column stores. SQL databases use structured query language for defining and manipulating the data, which is very powerful. In contrast, NoSQL databases have dynamic schemas for unstructured data, and data is stored in many ways in NoSQL databases.
+
+   SQL databases are great for heavy duty transactional type applications, as they follow ACID properties (Atomicity, Consistency, Isolation, Durability). On the other hand, NoSQL is better for large data sets like big data or real-time web apps. Real-time analytics, content management, and IoT applications are better suited to NoSQL.
+
+2. **What is a database schema?**
+
+   A database schema is the skeleton structure that represents the logical view of the entire database. It defines how the data is organized and how the relations among them are associated. It formulates all the constraints that are to be applied on the data.
+
+3. **What are database transactions and why are they important?**
+
+   A database transaction is a unit of work that is performed against a database. It is the propagation of one or more changes to the database. Transactions are important to ensure data integrity and to provide concurrent control. Transactions in a database environment have two main purposes: To provide reliable units of work that allow correct recovery from failures and keep a database consistent even in cases of system failure, and to provide isolation between programs accessing a database concurrently.
+
+4. **What is database replication and why is it used?**
+
+   Database replication is the frequent electronic copying of data from a database in one computer or server to a database in another so that all users share the same level of information. The result is a distributed database in which users can access data relevant to their tasks without interfering with the work of others. It is used to improve reliability, fault-tolerance, or accessibility.
+
+5. **What is a data warehouse and how is it different from a regular database?**
+
+   A data warehouse is a large store of data collected from a wide range of sources within a company and used to guide management decisions. Unlike a regular database, they are optimized for reading and analyzing data, often containing large amounts of historical data. Regular databases are more normalized and are used for transactional processing, whereas data warehouses are highly denormalized with more redundancies for faster complex queries on large amounts of data.
+
+Remember, the depth of your answer would depend on the position you're applying for. Always tailor your responses to the job requirements and your personal experience.
+
+Sure, here are some more questions related to Database and Storage design in the context of a low-level system design interview:
+
+1. **What is database sharding, and how can it help with the scalability of a system?**
+
+    Sharding is a type of database partitioning that separates very large databases into smaller, faster, more easily managed parts called data shards. Shard literally means a small part of a whole. Hence each shard is held on a separate database server instance, to spread load and to decrease response time.
+
+    Sharding can improve application performance through parallelism. A database shard can be placed on separate hardware, and multiple shards can be placed on multiple machines to enable parallel access. This allows operations to be divided between servers, reducing the total resources required to perform an operation.
+
+2. **What is database normalization and why is it important?**
+
+    Database normalization is the process of structuring a relational database in accordance with a series of so-called normal forms in order to reduce data redundancy and improve data integrity. It involves decomposing a table into less redundant (and smaller) tables without losing information.
+
+    It is important because it eliminates redundant data. In other words, it provides a method to avoid duplication and potential inconsistencies, leading to better use of disk space and easier database maintenance.
+
+3. **What is a database index and how does it improve query performance?**
+
+    A database index is a data structure that improves the speed of operations in a table. Indexes can be created using one or more columns, providing the basis for both rapid random lookups and efficient access of ordered records. The keys are used to find the location of rows in a table that satisfy some condition and sorted according to the value of the indexed column so they can be traversed in order.
+
+    An index can dramatically speed up data retrieval but also slow down data insertion, data deletion, and table updates. Hence, it's a trade-off that a developer must consider.
+
+4. **What are the ACID properties in a database system?**
+
+    ACID (Atomicity, Consistency, Isolation, Durability) is a set of properties of database transactions. The ACID properties guarantee that all database transactions are processed reliably:
+
+    - Atomicity: This property ensures that a transaction is treated as a single, indivisible unit, which either succeeds completely, or fails completely.
+    - Consistency: This property ensures that a transaction brings a database from one valid state to another.
+    - Isolation: This property ensures that concurrent execution of transactions leaves the database in the same state that would have been obtained if the transactions were executed sequentially.
+    - Durability: This property ensures that once a transaction has been committed, it remains committed even in the case of a system failure.
+
+5. **What are some common techniques for backing up a database? What are their pros and cons?**
+
+    There are many techniques for backing up a database, including the full backup, differential backup, and incremental backup.
+
+    - Full Backup: This is the most basic and complete type of backup operation. In a full backup, every file and folder in the system is backed up. The advantage of the full backup is that it is standalone and doesn't require any other backup when it is restored. The disadvantage is that it takes the longest time.
+
+    - Differential Backup: This contains all files that have changed since the last FULL backup. The advantage is that it's quicker than a full backup, and restoring the data is faster than incremental backup. The disadvantage is that if you perform many differential backups between full backups, then the size of the differential backup could grow to be larger than the size of the full backups.
+
+    - Incremental Backup: This includes only the files that have been changed since the last backup, regardless of whether
+
+ it was a full or incremental backup. It is the quickest and requires the least storage space. However, during a restore operation, each increment is processed, which takes more time.
+
+Remember, your answers should demonstrate your understanding of the concepts and your ability to apply them to real-world scenarios.
+
+Sure, here are more potential interview questions and answers related to Database and Storage in Low-Level System Design:
+
+1. **What is CAP theorem? Can you explain it with a real-world example?**
+
+   CAP theorem states that it is impossible for a distributed data store to simultaneously provide more than two out of the following three guarantees:
+    - Consistency: Every read receives the most recent write or an error.
+    - Availability: Every request receives a (non-error) response, without the guarantee that it contains the most recent write.
+    - Partition Tolerance: The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes.
+
+   A real-world example of CAP theorem is managing reservations for an airline seat. Here's a possible way to explain it:
+
+   If we choose Consistency and Availability (CA) but ignore Partition Tolerance (P), it means that our system will always give out the most recent data and it is always up, but it might have problems when a network partition occurs (like when data centers can't communicate). The system can't guarantee that it won't sell the same seat to multiple people when there's a partition between the server which maintains the seat inventory and the server which is trying to sell the seat.
+
+2. **What are the differences between SQL and NoSQL databases? When would you use one over the other?**
+
+   SQL databases are relational, meaning they're organized into tables, and these tables have a predefined schema. SQL databases use structured query language for defining and manipulating the data. They are generally better at handling complex queries.
+
+   NoSQL databases are non-relational, can store structured, semi-structured, or unstructured data, and do not require a predefined schema. They can handle large volumes of data and are designed to scale out by distributing the data across many servers.
+
+   You would use SQL when you have a structured schema that isn't likely to change much. It's also beneficial if you need to do complex joins and other operations.
+
+   You would use NoSQL if you need to store large volumes of data without a structured schema, need to handle many read and write operations, or require horizontal scaling.
+
+3. **What is a database transaction and why is it important?**
+
+   A transaction is a single unit of work that consists of one or more related tasks that are done by a single user or application. The ACID (Atomicity, Consistency, Isolation, Durability) properties are ensured in a transaction.
+
+   Transactions are important because they ensure data integrity, even in cases of system failure. They do this by ensuring that any operation that alters data is completed in its entirety. If a transaction can't be completed, changes are rolled back to leave the database in its original state before the transaction began.
+
+4. **Explain the process of database denormalization and its advantages and disadvantages.**
+
+   Denormalization is the process of trying to improve the read performance of a database by adding redundant data or by grouping data. In some cases, denormalization can help mitigate the inefficiencies of complex joins and other database operations.
+
+   Advantages of denormalization include improved read performance and simpler queries.
+
+   Disadvantages include increased storage space, more complex updates (due to redundant data), and the potential for data inconsistencies.
+
+5. **How can indexing improve database performance?**
+
+   Indexing can greatly improve database performance as it allows the database server to find and retrieve specific rows much faster than without an index. But indexing adds a certain overhead to the database system as a whole, so it's important to find a balance between speed improvement and the overhead cost. Indexing can reduce the amount of data that needs to be read from the disk and it can help to avoid costly full table scans.

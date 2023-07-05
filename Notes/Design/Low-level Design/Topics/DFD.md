@@ -1,3 +1,5 @@
+# Data Flow Diagram (DFD)
+
 A Data Flow Diagram (DFD) is a graphical representation of the "flow" of data through an information system, modeling its process aspects. It's also often used as a preliminary step to create an overview of the system, which can later be elaborated.
 
 Here are the major components of a DFD:
@@ -41,3 +43,6 @@ The diagram would look something like this:
 ```
 
 Remember, this is a very simplified example, and actual DFDs could get a lot more complicated, especially as you go deeper into the system with Level 1 and Level 2 DFDs. But the basic idea will remain the same - DFDs are a way to visually represent how data flows through a system.
+
+## QnAs
+

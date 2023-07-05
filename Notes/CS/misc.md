@@ -1,4 +1,4 @@
-Backend
+## Backend
     1. difference between put and patch
     2. restful web services
     3. rest resource
@@ -23,7 +23,7 @@ Backend
     22. HTTP headers
     23. caching in api calls
 
-OS
+## OS
     1. segmentation
     2. paging
     3. thrashing
@@ -53,7 +53,7 @@ OS
     14. virtual memory
     15. thread in OS
 
-Networking
+## Networking
     1. tcp vs udp protocols (their real life applications)
     2. tcp/ip model vs osi model
     3. dns resolution

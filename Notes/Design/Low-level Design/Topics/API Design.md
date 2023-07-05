@@ -1,3 +1,5 @@
+# API Design
+
 API design refers to the process of developing a software interface that exposes backend data and application functionality for use in new applications. In other words, an API specifies how software components should interact. 
 
 When creating an API, whether it's a RESTful API, a library, or any other kind of interface, there are several important factors to consider:
@@ -237,3 +239,105 @@ def get_books():
 ```
 
 Remember, these are just guidelines. Always consider your specific use case when designing your API.
+
+## QnAs
+
+Sure, here are some potential interview questions about API design, along with suggested answers:
+
+1. **What is an API, and why is it important?**
+
+    An API, or Application Programming Interface, is a set of protocols and tools for building software and applications. APIs specify how software components should interact and allow different software systems to communicate with each other. APIs are important because they enable the development of software applications with diverse functionalities, using different technologies that can work together.
+
+2. **Can you explain what REST is?**
+
+    REST, or REpresentational State Transfer, is an architectural style for designing networked applications. It uses a stateless, client-server communication model, and is used to build web services that are lightweight, maintainable, and scalable. In a RESTful API, resources are identified by URLs and can be manipulated using standard HTTP methods, such as GET, POST, PUT, and DELETE.
+
+3. **What are the principles of REST?**
+
+    The key principles of REST include:
+    - Stateless: Each request from a client to a server must contain all the necessary information to understand and process the request.
+    - Client-Server: The client and server are separate entities that communicate over a network. They can be developed and updated independently of each other.
+    - Cacheable: Clients can cache server responses to improve performance.
+    - Uniform Interface: REST APIs have a consistent and predictable structure, making them easy to use.
+  
+4. **What is the difference between SOAP and REST?**
+
+    SOAP (Simple Object Access Protocol) and REST are both web service communication protocols. SOAP is a protocol, while REST is an architectural style. SOAP uses XML for request and response messages, and is more suited for application-to-application communication. REST primarily uses HTTP methods and can return data in multiple formats (like JSON, XML, etc). REST is generally considered easier to work with and more flexible than SOAP.
+
+5. **What are idempotent operations in the context of a RESTful API?**
+
+    An idempotent HTTP method is a method that can be called many times without different outcomes. It would not matter if the method is called only once, or ten times over. The result should be the same. In REST, GET, PUT, DELETE, HEAD, OPTIONS and TRACE are idempotent methods, while POST is not.
+
+6. **What is API versioning, and why is it important?**
+
+    API versioning is the practice of maintaining multiple versions of your API to accommodate changes over time without breaking compatibility for existing users. Versioning allows you to introduce non-backward-compatible changes to your API without negatively impacting existing users.
+
+7. **What is rate limiting in APIs, and why is it used?**
+
+    Rate limiting is the process of controlling the number of requests a client can make to an API within a certain period. This is used to prevent abuse, protect an API from being overwhelmed by too many requests (which could lead to a denial-of-service), and to ensure fair usage among all clients.
+
+Remember, while these answers provide a starting point, it's important to use your own experience and understanding when responding to interview questions.
+
+Certainly, here are more interview questions and suggested answers related to API design:
+
+1. **What are some best practices for designing RESTful APIs?**
+
+    Here are a few best practices:
+    - Use HTTP methods explicitly: GET for retrieving data, POST for sending data, PUT for updating data, and DELETE for removing data.
+    - Be consistent with naming conventions. It's generally accepted to use plural nouns for endpoints.
+    - Version your APIs to manage changes efficiently.
+    - Leverage status codes to inform clients about the result of their requests.
+    - Implement rate limiting to protect your APIs against abuse.
+    - Provide useful error messages with specific details and possible solutions.
+
+2. **Can you explain the difference between authentication and authorization in the context of APIs?**
+
+    Authentication is the process of verifying the identity of a user, while authorization involves verifying what they have access to. In other words, authentication confirms that users are who they claim to be, and authorization determines what they are allowed to do.
+
+3. **What is OAuth and how is it used in API design?**
+
+    OAuth, or Open Authorization, is an open-standard authorization protocol or framework that describes how unrelated servers and services can safely allow authenticated access to their assets. It is commonly used as a way for users to grant websites or applications access to their information on other websites but without giving them the passwords.
+
+4. **What is an API Gateway and what are its uses?**
+
+    An API Gateway acts as a single point of entry into a system. It is a server that is the single entry point into the system. It is similar to the facade pattern from object-oriented programming. The API Gateway encapsulates the internal system architecture and provides an API that can be tailored to each client. It might have other responsibilities such as authentication, monitoring, load balancing, caching, request shaping and management, and static response handling.
+
+5. **What is pagination in the context of APIs? Why is it necessary?**
+
+    Pagination in APIs is a mechanism to limit the amount of data in the response of an API request. APIs often deal with large amounts of data, and sending all the data at once in response to a single request can be inefficient and impractical. Pagination allows breaking down the data into smaller chunks or pages, making it more manageable and improving performance.
+
+6. **What are the common types of API testing?**
+
+    Common types of API testing include:
+    - Validation Testing: Check if the API meets expectations for functionality, reliability, performance, and security.
+    - Load Testing: Understand the performance under a specific load.
+    - UI Testing: Testing the user interface for the API and other integral parts.
+    - Security Testing: Ensuring that the API has proper security controls in place.
+    - Functional Testing: Testing the functionality of the API endpoint.
+    - Integration Testing: Verifying the interaction between different parts of the system.
+
+Remember to always tailor these answers to reflect your own experiences and specific situations you've encountered in your career.
+
+Sure, here are some more interview questions and their corresponding answers about API Design:
+
+7. **How do you version APIs? Why is it important?**
+
+    Versioning APIs is important to prevent disruptions in service for users on an older version when updates are made. Versioning can be done in several ways, such as adding a version number in the URL or as a parameter, or using headers to specify the version. 
+
+8. **What is the difference between REST and SOAP APIs?**
+
+    REST (Representational State Transfer) and SOAP (Simple Object Access Protocol) are two different web service communication methods. REST is a more lightweight and maintainable architecture that commonly uses HTTP for all CRUD operations (Create, Read, Update, Delete). SOAP, on the other hand, is a protocol that uses XML for message exchange and it is designed to handle distributed computing environments. SOAP can be more robust and secure, it provides ACID compliance and has been widely adopted in enterprise environments.
+
+9. **What is a stateless API and why is it advantageous?**
+
+    Stateless APIs are those that retain no server-side memory of client-server interactions. Each request from a client to a server must contain all the information needed to understand and process the request. The advantages of stateless APIs include their scalability (since not maintaining a server-side memory of interactions saves resources), and the fact that any server can handle any request from any client, allowing for load-balancing and fault tolerance.
+
+10. **What is the principle of idempotency in API design?**
+
+    In the context of APIs, an operation is idempotent if making the same call repeatedly produces the same result every time. For instance, in a RESTful API, GET, PUT, DELETE methods are typically idempotent, while POST is not. Idempotency is important for the reliability of APIs, particularly in cases where network problems could cause a client to send the same request multiple times.
+
+11. **What is a webhook and how does it differ from a typical API?**
+
+    A webhook is a method of augmenting or altering the behavior of a web page or web application with custom callbacks. It's a way for an app to send real-time data to other apps, leading to more reactive behaviors, as opposed to typical API calls where you would need to poll for data very frequently to get it real-time.
+
+Remember to provide answers based on your own experiences and understanding of these topics.
