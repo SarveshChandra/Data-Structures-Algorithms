@@ -1,3 +1,5 @@
+# Introduction
+
 LLD, also known as detailed design, is the process of taking a high-level design (HLD) and translating it into a detailed design that can be implemented in a specific programming language.
 
 During this process, you'll decide on specific algorithms, data structures, and APIs. Essentially, the goal is to take your high-level system design and translate it into a step-by-step plan for implementing the system.

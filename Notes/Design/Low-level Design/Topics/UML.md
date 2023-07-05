@@ -1,3 +1,5 @@
+# Unified Modeling Language (UML)
+
 Sure, Unified Modeling Language (UML) is a general-purpose, developmental, modeling language in the field of software engineering that is intended to provide a standard way to visualize the design of a system. UML is not a programming language but tools can be used to generate code in various languages using UML diagrams.
 
 UML includes several types of diagrams for representing different aspects of a system. Here are some of the most commonly used types:
@@ -240,3 +242,70 @@ In this diagram, the application is split across two different servers:
 The arrow between the `Web Server` and `Database` denotes that they communicate with each other.
 
 Please note these are very simplified examples. Real-world diagrams often involve more components, more complex interactions, and also account for other factors like network details, clustering, replication, partitioning and more.
+
+## QnAs
+
+Sure, here are some potential interview questions and answers on UML (Unified Modeling Language) in Low-Level System Design:
+
+1. **Question: What is UML and what is its purpose in software development?**
+
+   Answer: UML stands for Unified Modeling Language. It's a general-purpose modeling language in the field of software engineering, which is designed to provide a standard way to visualize the design of a system. The purpose of UML is to define, visualize, construct, and document the artifacts of a software system. It simplifies the complex process of software design, making a blueprint for construction.
+
+2. **Question: Name and describe the types of UML diagrams.**
+
+   Answer: There are two categories of UML diagrams – Structural Diagrams and Behavioral Diagrams. 
+
+   - Structural Diagrams depict the static structure of the components in a system. These include Class diagrams, Object diagrams, Component diagrams, Deployment diagrams, and Package diagrams.
+
+   - Behavioral Diagrams depict the dynamic behavior of the components in a system. These include Use Case diagrams, Activity diagrams, and different types of Interaction diagrams (Sequence diagrams, Collaboration diagrams, Statechart diagrams, and Timing diagrams).
+
+3. **Question: What is a Class diagram and what are its main components?**
+
+   Answer: A Class diagram is a type of static structure diagram that describes the structure of a system by showing the system's classes, their attributes, operations, and the relationships among the classes. The main components of a Class diagram are:
+
+   - Class: Defined by its name, attributes (or properties), and operations (or methods).
+   - Relationships: These could be Association, Aggregation, Composition, Generalization, or Dependency.
+
+4. **Question: How is a Sequence diagram different from an Activity diagram?**
+
+   Answer: A Sequence diagram shows interaction between objects in a sequential order i.e., the order in which these interactions take place. We can also show conditions in sequence diagrams. Whereas an Activity diagram represents the workflow of stepwise activities and actions with support for choice, iteration, and concurrency.
+
+5. **Question: What is a Use Case diagram and what is its purpose?**
+
+   Answer: A Use Case diagram is a type of behavioral UML diagram that describes the functionality provided by a system in terms of actors, their goals (represented as use cases), and any dependencies between those use cases. The main purpose of a Use Case diagram is to help stakeholders (including end users) understand a system's high-level functionality and how users interact with the system.
+
+6. **Question: What is Generalization in UML and how is it different from Aggregation?**
+
+   Answer: Generalization is a relationship in which one model element (the child) is based on another model element (the parent). Generalization relationships are used in Class diagrams for inheritance and in Use Case diagrams for extending functionality. Aggregation, on the other hand, is a part-of relationship representing a whole/part relationship where the part can exist independently of the whole (as opposed to Composition where the part cannot exist independently).
+
+Sure, here are some additional potential interview questions and answers on UML (Unified Modeling Language) in Low-Level System Design:
+
+7. **Question: What is a State Diagram in UML?**
+
+   Answer: A state diagram, also known as a state machine diagram or statechart diagram, is a behavioral UML diagram that demonstrates the states an object or interaction may be in, as well as the transitions between those states. It's often used in the modeling of reactive systems.
+
+8. **Question: What is a Deployment Diagram in UML?**
+
+   Answer: A Deployment Diagram in UML shows the configuration of run-time processing nodes and the components (hardware, software, middleware) that live on them. It provides a static view of the runtime configuration of processing nodes and the components that run on those nodes.
+
+9. **Question: What is an Actor in a Use Case Diagram?**
+
+   Answer: An actor in a use case diagram interacts with the system to achieve a specific goal. The actor can be a human user, a piece of hardware, or even another system or subsystem. It is external to the system being modeled and provides or receives data.
+
+10. **Question: What is the purpose of a Collaboration Diagram in UML?**
+
+   Answer: A Collaboration Diagram, also known as a Communication Diagram, is a type of interaction diagram that shows the sequence and interaction of messages that are sent and received between objects in an application. It is used to visualize the structural organization of objects and their interactions.
+
+11. **Question: How would you explain the difference between Association, Aggregation, and Composition in UML?**
+
+   Answer: In UML, Association, Aggregation, and Composition are three kinds of relationships which describe how objects relate to each other.
+
+   - Association is a simple relationship between two classes where both can maintain their lifecycle independently. It represents a "using" relationship.
+   
+   - Aggregation is a specialized form of Association where all objects have their lifecycle, but there is ownership, and child objects cannot belong to another parent object. It represents a "has-a" relationship.
+   
+   - Composition is a strong form of Aggregation and is sometimes referred to as a "death" relationship. Child objects do not have their lifecycle, and if the parent object is deleted, all child objects will also be deleted. It represents a "part-of" relationship.
+
+12. **Question: What is an Activity Diagram and what does it depict?**
+
+   Answer: An Activity Diagram is a type of UML behavioral diagram that represents workflows or business processes showing the activities, actions, and control flows. It depicts the dynamic aspects of the system. An activity diagram is essentially a flowchart that shows activities performed by the system.

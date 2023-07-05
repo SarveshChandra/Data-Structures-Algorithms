@@ -588,9 +588,7 @@ Sure, here are some more questions related to Database and Storage design in the
 
     - Differential Backup: This contains all files that have changed since the last FULL backup. The advantage is that it's quicker than a full backup, and restoring the data is faster than incremental backup. The disadvantage is that if you perform many differential backups between full backups, then the size of the differential backup could grow to be larger than the size of the full backups.
 
-    - Incremental Backup: This includes only the files that have been changed since the last backup, regardless of whether
-
- it was a full or incremental backup. It is the quickest and requires the least storage space. However, during a restore operation, each increment is processed, which takes more time.
+    - Incremental Backup: This includes only the files that have been changed since the last backup, regardless of whether it was a full or incremental backup. It is the quickest and requires the least storage space. However, during a restore operation, each increment is processed, which takes more time.
 
 Remember, your answers should demonstrate your understanding of the concepts and your ability to apply them to real-world scenarios.
 

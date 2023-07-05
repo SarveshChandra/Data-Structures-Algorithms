@@ -1,3 +1,5 @@
+# Software Design Patterns
+
 Design patterns are recurring solutions to common problems in software design. They're not finished designs that you can convert directly into code; they are templates for how to solve a problem that can be used in many different situations.
 
 Design patterns can speed up the development process by providing tested, proven development paradigms. Reusing design patterns helps to prevent subtle issues that can cause significant problems and improves code readability for coders and architects who are familiar with the patterns.
@@ -455,3 +457,61 @@ make_bold_command.execute()
 make_italic_command.execute()
 ```
 In this command pattern example, we have a `Text` class and we can issue commands (`MakeBoldCommand`, `MakeItalicCommand`) to change the text.
+
+## QnAs
+
+Sure, here are some potential interview questions and answers on Software Design Patterns in Low-Level System Design:
+
+1. **Question: What is a singleton pattern and where is it used?**
+
+   Answer: The Singleton pattern is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance. This pattern is typically used for logging, driver objects, caching, thread pool, database connections, and service access points.
+
+2. **Question: Explain the Observer pattern.**
+
+   Answer: The Observer pattern is a behavioral design pattern that allows some objects to notify other objects about changes in their state. The notifying (publishing) object holds a list of subscribers and notifies them in sequence when any state changes occur.
+
+3. **Question: Can you describe the Factory Method pattern?**
+
+   Answer: The Factory Method is a creational design pattern which provides an interface for creating objects, but allows subclasses to alter the type of objects that will be created. It offers a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes.
+
+4. **Question: What is the difference between the Decorator pattern and the Adapter pattern?**
+
+   Answer: The Decorator pattern allows a user to add new functionality to an existing object without altering its structure, acting as a wrapper. The Adapter pattern, on the other hand, converts the interface of a class into another interface that the client expects. The Adapter pattern is used to make two incompatible interfaces compatible without changing their source code.
+
+5. **Question: What is the use of the Command pattern?**
+
+   Answer: The Command pattern is a behavioral design pattern that turns a request into a stand-alone object that contains all information about the request. The transformation lets you parameterize methods with different requests, delay or queue a request’s execution, and support undoable operations. This pattern is commonly used in menu systems, multi-level undo/redo features, and macro recording.
+
+6. **Question: Explain the Strategy pattern.**
+
+   Answer: The Strategy pattern is a behavioral design pattern that lets you define a family of algorithms, put each of them into a separate class, and make their objects interchangeable. In other words, the Strategy pattern defines a set of encapsulated algorithms that can be swapped to carry out a specific behavior.
+
+7. **Question: What are the benefits of using design patterns?**
+
+   Answer: Design patterns provide solutions to common software design problems, and they also improve the readability and reliability of software. They offer standard terminology and are a specific way to communicate complex structures efficiently. Design patterns also provide general solutions that are documented in a pattern language, which can be used for common problems when designing an application or system.
+
+Sure, here are some more potential interview questions and answers on Software Design Patterns in Low-Level System Design:
+
+1. **Question: Explain the Builder pattern and its advantages.**
+
+   Answer: The Builder pattern is a creational design pattern that lets you construct complex objects step by step. This pattern allows you to produce different types and representations of an object using the same construction code. The main advantage of the Builder pattern is that it allows clients to construct a complex object in a step-by-step fashion. It gives a clear separation between the construction and representation of an object.
+
+2. **Question: What is the Proxy pattern and where can it be used?**
+
+   Answer: The Proxy pattern provides a surrogate or placeholder for another object to control access to it. It involves a class, called proxy class, which represents functionality of another class. Proxy pattern can be used in various situations like controlling access to the original object, reducing the memory footprint of a heavy object until it is needed, or loading an object on demand, and others.
+
+3. **Question: Can you explain the Composite design pattern?**
+
+   Answer: The Composite pattern is a structural design pattern that lets you compose objects into tree structures and allows clients to work with these structures as if they were individual objects. It is often applied when you need to represent part-whole hierarchies. The composite pattern is mostly used in scenarios where you want the client to ignore the difference between compositions of objects and individual objects.
+
+4. **Question: What is the Chain of Responsibility pattern?**
+
+   Answer: The Chain of Responsibility pattern is a behavioral design pattern that lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain. This pattern decouples sender and receiver of a request based on type of request.
+
+5. **Question: How is the Bridge pattern different from the Adapter pattern?**
+
+   Answer: The Bridge pattern and the Adapter pattern have similar looks but different intents. The Adapter pattern is meant to help two incompatible interfaces to work together. In contrast, the Bridge pattern is meant to decouple an abstraction from its implementation so that the two can vary independently. It's about having a cleaner interface between two parts of a system, whereas Adapter is about making two parts of a system compatible.
+
+6. **Question: What is the Flyweight pattern and where can it be used?**
+
+   Answer: The Flyweight pattern is a structural design pattern that lets you fit more objects into the available amount of RAM by sharing common parts of the state between multiple objects, instead of keeping all of the data in each object. It is used when a large number of similar objects are required but they are too large to fit into memory.

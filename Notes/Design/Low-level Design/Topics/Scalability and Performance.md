@@ -1,3 +1,5 @@
+# Scalability and Performance
+
 Scalability and performance are essential aspects of low-level design and dictate how well an application can handle increasing workloads and utilize resources effectively. 
 
 **1. Scalability**
@@ -291,3 +293,69 @@ Here's a simplified version of what happens when a client makes a request:
 6. NGINX receives the HTTP response from uWSGI and sends it back to the client.
 
 By using NGINX and uWSGI, your Django application can handle many concurrent connections, serve static files efficiently, and load-balance requests between multiple processes or servers. This setup also allows you to handle long-running requests without blocking other requests, and provides a level of isolation between your Python application and the outside world, among other benefits.
+
+## QnAs
+
+Sure, here are some potential interview questions and answers on Scalability and Performance in Low-Level System Design:
+
+1. **Question: What do you understand by the term 'scalability'?**
+
+   Answer: Scalability is the capability of a system to handle an increased load without impacting the performance. It's about the system's ability to increase its capacity to meet the growing demands. There are two types of scalability - vertical (adding more resources such as CPU, RAM to the existing nodes) and horizontal (adding more nodes to the system).
+
+2. **Question: How do caching and Content Delivery Networks (CDNs) improve the performance of a system?**
+
+   Answer: Caching involves storing copies of files in accessible locations to reduce access time. In a web application, caching can significantly reduce the load on the database by storing commonly accessed data, thereby improving response time. 
+
+   A CDN is a network of servers that deliver web content to users based on their geographic location. By storing a cached version of its content in multiple geographical locations, a CDN enables users to access the data from a location that is closest to them, thereby reducing latency and improving site speed.
+
+3. **Question: How do you handle hotspots in databases for read-heavy or write-heavy applications?**
+
+   Answer: Hotspots can be mitigated in several ways:
+   
+   - **Sharding**: This involves splitting a larger database into smaller parts based on certain rules, and can be particularly effective for write-heavy applications.
+   
+   - **Read replicas**: These are copies of the primary database that handle read traffic, reducing the load on the primary database. They are especially useful in read-heavy applications.
+   
+   - **Caching**: As mentioned earlier, caching frequently accessed data can dramatically reduce read loads.
+   
+   - **Using more robust data structures or databases**: Certain data structures (like tries, bloom filters) or databases (like NoSQL databases) handle heavy loads better.
+
+4. **Question: What is the CAP theorem? How does it apply to system design?**
+
+   Answer: The CAP theorem states that it's impossible for a distributed system to simultaneously provide all three of the following guarantees: Consistency, Availability, and Partition tolerance. When designing a system, architects often need to choose between consistency and availability when partition tolerance is a requirement.
+
+5. **Question: What are some strategies to deal with high traffic loads?**
+
+   Answer: Several strategies can help deal with high traffic loads:
+
+   - **Load balancing**: Distributing network or application traffic across multiple servers to ensure no single server becomes a bottleneck.
+
+   - **Auto-scaling**: Automatically adjusting the number of computational resources in a server farm, typically measured in terms of the number of active servers, to meet the demand.
+
+   - **Rate limiting**: Controlling the number of requests a client can make to a server in a given amount of time.
+
+   - **Caching**: Storing the result of an expensive operation and reusing the result for subsequent requests.
+
+   - **Database optimization**: Techniques like indexing, sharding, and using read replicas can help manage high traffic at the database level.
+
+Sure, here are some more potential interview questions and answers on Scalability and Performance in Low-Level System Design:
+
+6. **Question: What are some differences between scaling vertically and scaling horizontally?**
+
+   Answer: Vertical scaling, often called "scaling up", is the process of adding more resources (such as CPU, RAM) to an existing server to handle more load. However, there's an upper limit to how much you can scale up due to hardware limitations. Horizontal scaling, often called "scaling out", involves adding more servers or nodes to the system to distribute the load. This type of scaling can handle significantly more traffic and is more flexible as you can add or remove servers based on the demand.
+
+7. **Question: What is a load balancer and how does it contribute to system scalability?**
+
+   Answer: A load balancer is a device that distributes network or application traffic across a cluster of servers. Its key role is to ensure that no single server bears too much demand. This enhances the overall performance, reliability, and efficiency of the application, leading to increased system scalability. It can also help in maintaining system availability in case one of the servers goes down, as the load balancer can redirect the traffic to the remaining servers.
+
+8. **Question: What is the role of database indexing in system performance?**
+
+   Answer: Database indexing is a technique used to speed up the retrieval of data from the database. An index in a database is similar to an index in a book – it is a pointer to data. Without indexing, the database server must go through every row in a table (a full table scan) to retrieve the desired data. This can be highly inefficient for large datasets. An index provides a shortcut, allowing the database to find and retrieve data much faster.
+
+9. **Question: Explain how data partitioning helps with scalability?**
+
+   Answer: Data partitioning is the process of splitting large databases into smaller, more manageable parts, or partitions. The goal of partitioning is to aid in the maintenance of large databases and improve their performance. There are several ways to partition data - horizontal partitioning, vertical partitioning, and functional partitioning. Partitioning allows for more efficient queries, updates, and read/write operations by reducing the size of the searchable database, thus improving system scalability.
+
+10. **Question: How can asynchronous processing be used to enhance system performance?**
+
+    Answer: Asynchronous processing means that a system can start a task, move on to another task before the first task completes, and then return to the first task once it completes. In synchronous processing, tasks are performed sequentially, meaning a task must complete before moving on to the next one. Asynchronous processing can greatly enhance system performance by allowing a system to do more things at once, particularly when handling tasks that involve waiting, such as I/O operations.
